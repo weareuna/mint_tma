@@ -1,17 +1,32 @@
-from telegram import Update, WebAppInfo
+import os
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
-from telegram import KeyboardButton, ReplyKeyboardMarkup
+
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "7505688846:AAH1tr0-AzvnofBKZPrfH0qWZOby1knaIhU")
+WEBAPP_URL = os.environ.get("WEBAPP_URL", "https://weareuna.github.io/gamefactory_tma/")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    web_app = WebAppInfo(url="https://weareuna.github.io/gamefactory_tma/")
-    keyboard = [[KeyboardButton("Play Now", web_app=web_app)]]
-    reply_markup = ReplyKeyboardMarkup(keyboard)
+    # Create WebAppInfo object
+    web_app = WebAppInfo(url=WEBAPP_URL)
     
+    # Create inline keyboard
+    keyboard = [
+        [InlineKeyboardButton("Play in 1 click 🦄", web_app=web_app)],
+        [InlineKeyboardButton("Follow us on X", url="https://x.com")]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    
+    # Send message with inline keyboard
     await update.message.reply_text(
-        "Welcome! Click the button below to play GameFactory",
+        "Welcome to the game factory",
         reply_markup=reply_markup
     )
 
-app = ApplicationBuilder().token("7505688846:AAH1tr0-AzvnofBKZPrfH0qWZOby1knaIhU").build()
-app.add_handler(CommandHandler("start", start))
-app.run_polling()
+def main():
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    print("Bot is running...")
+    app.run_polling()
+
+if __name__ == "__main__":
+    main()
