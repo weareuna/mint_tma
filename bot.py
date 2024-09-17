@@ -11,14 +11,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     # Create inline keyboard
     keyboard = [
-        [InlineKeyboardButton("Play in 1 click 🦄", web_app=web_app)],
-        [InlineKeyboardButton("Follow us on X", url="https://x.com")]
+        [InlineKeyboardButton("Play in 1 click 🕹️", web_app=web_app)],
+        [InlineKeyboardButton("Follow us on X ", url="https://x.com/SlingShotDAO")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     # Send message with inline keyboard
     await update.message.reply_text(
-        "Welcome to the game factory",
+        "Welcome to the GameFactory! 🦄\n\nUpgrade your factory, boost your production, and race to the top of the leaderboard. The more you produce, the more you win. Invite your friends to earn even more rewards!",
         reply_markup=reply_markup
     )
 
