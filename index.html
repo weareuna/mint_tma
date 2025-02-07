@@ -27,6 +27,22 @@
 
             applySafeAreaInsets();
             Telegram.WebApp.onEvent('viewportChanged', applySafeAreaInsets);
+
+            // Restrict Mini App Access to a Specific User ID
+            const ALLOWED_USER_ID = 1073473560; // Your Telegram User ID
+            const userId = Telegram.WebApp.initDataUnsafe?.user?.id;
+
+            console.log("User ID:", userId); // Debugging
+
+            if (userId !== ALLOWED_USER_ID) {
+                // Block unauthorized users
+                document.body.innerHTML = `
+                    <div style="text-align:center; font-size:20px; color:red; padding-top:50px;">
+                        🚫 Access Denied: This Mini App is private.
+                    </div>
+                `;
+                return;
+            }
         });
     </script>
 
@@ -74,7 +90,7 @@
 
 <body>
     <main>
-        <iframe src="https://mint-tgma.framer.website/"></iframe>
+        <iframe id="appFrame" src="https://mint-tgma.framer.website/" style="display:none;"></iframe>
     </main>
 
     <script>
@@ -90,6 +106,11 @@
         Telegram.WebApp.onEvent('themeChanged', function() {
             document.body.style.backgroundColor = Telegram.WebApp.backgroundColor;
         });
+
+        // Show iframe only if user is allowed
+        if (Telegram.WebApp.initDataUnsafe?.user?.id === 1073473563) {
+            document.getElementById("appFrame").style.display = "block";
+        }
     </script>
 
 </body>
