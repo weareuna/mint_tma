@@ -2,7 +2,7 @@ import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "373526599:AAHtyEkcyL8CLFIKo5YWnR4X0IZC-PF7mA0")
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "7373526599:AAHtyEkcyL8CLFIKo5YWnR4X0IZC-PF7mA0")
 WEBAPP_URL = os.environ.get("WEBAPP_URL", "https://weareuna.github.io/mint_tma/")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
