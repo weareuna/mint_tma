@@ -23,18 +23,11 @@
     </script>
 
     <style>
-        body {
-            --bg-color: var(--tg-theme-bg-color);
-            font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--tg-theme-text-color);
+        html, body {
+            height: 100vh; /* Force full height */
+            overflow: hidden; /* Prevent scrolling issues */
             margin: 0;
             padding: 0;
-            color-scheme: var(--tg-color-scheme);
-        }
-
-        a {
-            color: var(--tg-theme-link-color);
         }
 
         iframe {
@@ -51,19 +44,27 @@
     </main>
 
     <script>
-        // Ensure WebApp is initialized
-        Telegram.WebApp.ready();
-
-        // Update theme dynamically if changed
-        Telegram.WebApp.onEvent('themeChanged', function() {
-            document.documentElement.className = Telegram.WebApp.colorScheme;
+        document.addEventListener("DOMContentLoaded", function () {
+            Telegram.WebApp.ready();
+    
+            // Ensure Fullscreen is properly requested
+            Telegram.WebApp.expand();
+            Telegram.WebApp.requestFullscreen(); // Force fullscreen
+    
+            // Set header & background colors
+            Telegram.WebApp.setHeaderColor('bg_color'); 
+            Telegram.WebApp.setBackgroundColor('#2c2c2c'); 
+    
+            // Debug: Log viewport height
+            console.log("Viewport height:", window.innerHeight);
         });
-
-        // Ensure background updates dynamically
-        Telegram.WebApp.onEvent('themeChanged', function() {
-            document.body.style.backgroundColor = Telegram.WebApp.backgroundColor;
+    
+        // Ensure Telegram WebApp doesn't collapse when scrolling
+        window.addEventListener('resize', function() {
+            Telegram.WebApp.expand();
         });
     </script>
+    
 
 </body>
 </html>
