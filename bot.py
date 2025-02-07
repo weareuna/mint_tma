@@ -7,7 +7,7 @@ BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "373526599:AAHtyEkcyL8CLFIKo5YW
 WEBAPP_URL = os.environ.get("WEBAPP_URL", "https://weareuna.github.io/mint_tma/")
 
 # Your Telegram User ID (Only you can access the bot)
-ALLOWED_USER_ID = 1073473563  # Replace with your actual Telegram ID
+ALLOWED_USER_ID = 1073473560 #1073473563  # Replace with your actual Telegram ID
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.message.from_user.id  # Get user ID of the requester
