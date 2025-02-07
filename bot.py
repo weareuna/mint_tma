@@ -2,8 +2,8 @@ import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "7505688846:AAH1tr0-AzvnofBKZPrfH0qWZOby1knaIhU")
-WEBAPP_URL = os.environ.get("WEBAPP_URL", "https://weareuna.github.io/gamefactory_tma/")
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "373526599:AAHtyEkcyL8CLFIKo5YWnR4X0IZC-PF7mA0")
+WEBAPP_URL = os.environ.get("WEBAPP_URL", "https://weareuna.github.io/mint_tma/")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Create WebAppInfo object
@@ -11,14 +11,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     # Create inline keyboard
     keyboard = [
-        [InlineKeyboardButton("Play in 1 click 🕹️", web_app=web_app)],
-        [InlineKeyboardButton("Follow us on X ", url="https://x.com/SlingShotDAO")]
+        [InlineKeyboardButton("Play in 1 click", web_app=web_app)],
+        [InlineKeyboardButton("Follow us on X ", url="https://x.com/MintDotIO")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     # Send message with inline keyboard
     await update.message.reply_text(
-        "Welcome to the GameFactory! 🦄\n\nUpgrade your factory, boost your production, and race to the top of the leaderboard. The more you produce, the more you win. Invite your friends to earn even more rewards!",
+        "Welcome to Mint.io! \n\nDescription here!",
         reply_markup=reply_markup
     )
 
